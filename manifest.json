@@ -70,5 +70,17 @@
                 "js/content.js"
             ]
         }
+    ],
+
+    "devtools_page": "html/devtools.html",
+
+    /**
+     * You can use most chrome.tabs methods and events without declaring any
+     * permissions in the extension's manifest file. However, if you require
+     * access to the url, title, or favIconUrl properties of tabs.Tab, you must
+     * declare the "tabs" permission in the manifest.
+     */
+    "permissions": [
+        "tabs"
     ]
 }
