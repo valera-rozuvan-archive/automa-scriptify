@@ -1,0 +1,74 @@
+/**
+ * The entry point of your extension is the manifest.json file. It should
+ * contain a valid JSON object.
+ *
+ * The required properties are name, version, and manifest_version. The version
+ * can be anywhere from one to four, dot-separated integers. It's something
+ * which is used by Google's autoupdate system. That's how it knows when to
+ * update your extension. The value of the manifest_version should be the
+ * integer 2.
+ */
+{
+    "name": "AutomaScriptify",
+    "version": "0.0.2",
+    "manifest_version": 2,
+
+    /**
+     * Most developers use the browser_action property to build their plugins.
+     * Once you set it, an icon representing your extension will be placed on
+     * the right side of the address bar. Users can then click the icon and
+     * open a pop-up which is actually HTML content controlled by you.
+     */
+    "browser_action": {
+        "default_icon": {
+            "19": "icons/19x19.png",
+            "38": "icons/38x38.png"
+        },
+        "default_title": "Automa Scriptify",
+        "default_popup": "html/def_popup.html"
+    },
+
+    /**
+     * Every extension has an invisible background page which is run by the
+     * browser. There are two types - persistent background pages and event
+     * pages. The first one is active, all of the time. The second is active
+     * only when it is needed. Google encourages developers to use event pages,
+     * because this saves memory and improves the overall performance of the
+     * browser. However, it's good to know that this is also where you should
+     * put your main logic and initialization. Normally the background
+     * page/script plays the role of a bridge between the other parts of the
+     * extension.
+     */
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ],
+        /**
+         * As you may have guessed, if the persistent property is false then
+         * you are using event pages. Otherwise, you are working with a
+         * persistent background page.
+         */
+        "persistent": true
+    },
+
+    /**
+     * If you need access to the current page's DOM, then you have to use a
+     * content script. The code is run within the context of the current web
+     * page, which means that it will be executed with every refresh.
+     */
+    "content_scripts": [
+        {
+            /**
+             * Keep in mind that the value of matches determines for which
+             * pages your script will be used.
+             *
+             * Matches patterns:
+             *     https://developer.chrome.com/extensions/match_patterns.html
+             */
+            "matches": ["http://*/*", "https://*/*"],
+            "js": [
+                "js/content.js"
+            ]
+        }
+    ]
+}
